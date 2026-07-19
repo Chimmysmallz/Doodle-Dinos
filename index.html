@@ -248,8 +248,11 @@
   .rec-toggle input{width:24px; height:24px;}
   .rec-list{display:flex; flex-direction:column; gap:10px;}
   .rec-row{background:#fff; border-radius:16px; padding:12px 14px; box-shadow:0 4px 0 rgba(0,0,0,.06); display:flex; flex-direction:column; gap:10px;}
-  .rec-info{font-size:14px; color:#5a3d00;}
-  .rec-ok{color:#06d6a0; font-weight:800;}
+  .rec-info{font-size:15px; color:#5a3d00;}
+  .rec-num{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:#f3a712; color:#fff; font-weight:800; font-size:14px; vertical-align:middle;}
+  .rec-emoji{font-size:32px; margin:8px 0 2px;}
+  .rec-text{font-size:16px; line-height:1.5; color:#5a3d00;}
+  .rec-ok{color:#06d6a0; font-weight:800; font-size:13px; margin-left:8px;}
   .rec-btns{display:flex; gap:8px; flex-wrap:wrap;}
   .rec-b{border:none; border-radius:12px; padding:10px 14px; min-height:44px; font-weight:800; font-family:inherit; font-size:14px; background:#ffe9b8; color:#7a5200; cursor:pointer;}
   .rec-b.stop{background:#ef476f; color:#fff;}
@@ -1201,7 +1204,7 @@ function renderRecList(){
   A.forEach((s,idx)=>{ const rec=recordedSet.has('story-'+idx);
     const busy=(mediaRec && recTarget===idx && mediaRec.state!=='inactive');
     const row=document.createElement('div'); row.className='rec-row';
-    row.innerHTML='<div class="rec-info"><b>'+(idx+1)+'.</b> '+s.t.slice(0,40)+'…'+(rec?' <span class="rec-ok">✓</span>':'')+'</div>';
+    row.innerHTML='<div class="rec-info"><span class="rec-num">'+(idx+1)+'</span>'+(rec?' <span class="rec-ok">✓ recorded</span>':'')+'<div class="rec-emoji">'+s.e+'</div><div class="rec-text">'+s.t+'</div></div>';
     const btns=document.createElement('div'); btns.className='rec-btns';
     if(busy){ const b=document.createElement('button'); b.className='rec-b stop'; b.textContent='⏹ '+L('rec_stop'); b.onclick=stopRec; btns.appendChild(b); }
     else{ const b=document.createElement('button'); b.className='rec-b'; b.textContent='🎙️ '+L('rec_record'); b.onclick=()=>startRec(idx); btns.appendChild(b); }
