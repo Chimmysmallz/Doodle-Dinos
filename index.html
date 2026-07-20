@@ -815,7 +815,7 @@ function flowStep(step){
 function choosePlan(id){ selectedPlan=id; tone(660,0.12,'sine',0.12); flowStep('confirm'); }
 function confirmPurchase(){ currentPlan=selectedPlan; localStorage.setItem('tt_plan',currentPlan);
   premium=true; localStorage.setItem('tt_premium','1'); confetti(); chord([523,659,784,1046],0.5); flowStep('success'); }
-function finishFlow(){ closeFlow(); renderPremium(); if(typeof refreshLullabies==='function')refreshLullabies(); say(L('prem_active')); }
+function finishFlow(){ closeFlow(); renderPremium(); if(typeof refreshLullabies==='function')refreshLullabies(); }
 function cancelPremium(){ premium=false; localStorage.setItem('tt_premium','0'); currentPlan=''; localStorage.removeItem('tt_plan');
   closeFlow(); renderPremium(); if(typeof refreshLullabies==='function')refreshLullabies(); }
 
